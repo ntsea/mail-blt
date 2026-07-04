@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Günlük Bülten — {{ date }}</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Arial,Helvetica,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f4f4;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:#ffffff;border-radius:8px;overflow:hidden;">
+
+          <!-- HEADER -->
+          <tr>
+            <td style="background-color:#1a1a2e;padding:28px 32px;">
+              <p style="margin:0;font-size:12px;color:#8888aa;letter-spacing:2px;text-transform:uppercase;">Günlük Bülten</p>
+              <h1 style="margin:6px 0 0 0;font-size:22px;color:#ffffff;font-weight:700;">{{ date }}</h1>
+            </td>
+          </tr>
+
+          <!-- SECTION: EVRİM AĞACI -->
+          <tr>
+            <td style="padding:28px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #2d6a4f;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Evrim Ağacı</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">Rastgele Makaleler</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for url in evrimagaci %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <a href="{{ url }}" style="color:#2d6a4f;text-decoration:none;font-size:14px;line-height:1.5;">{{ url | urlname }}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- DIVIDER -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
+            </td>
+          </tr>
+
+          <!-- SECTION: EKŞİ ŞEYLER RASTGELE -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #e94560;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Ekşi Şeyler</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">Rastgele Seçilenler</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for item in eksiseyler_random %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <a href="{{ item.url }}" style="color:#e94560;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
+                    <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          {% if eksiseyler_new %}
+          <!-- SECTION: EKŞİ ŞEYLER YENİ -->
+          <tr>
+            <td style="padding:20px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #0f3460;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Ekşi Şeyler</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">🆕 Yeni Eklenenler</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for item in eksiseyler_new %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <span style="display:inline-block;background-color:#e8f4fd;color:#0f3460;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:8px;text-transform:uppercase;">Yeni</span>
+                    <a href="{{ item.url }}" style="color:#0f3460;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
+                    <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+          {% endif %}
+
+          <!-- DIVIDER -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
+            </td>
+          </tr>
+
+          <!-- SECTION: DEBE -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #533483;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Ekşi Sözlük</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">Dünün En Beğenilen Entry'leri</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px 28px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for item in debe %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <a href="{{ item.url }}" style="color:#533483;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background-color:#f8f8f8;padding:16px 32px;border-top:1px solid #eeeeee;">
+              <p style="margin:0;font-size:11px;color:#aaaaaa;text-align:center;">Otomatik olarak oluşturuldu • {{ date }}</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
