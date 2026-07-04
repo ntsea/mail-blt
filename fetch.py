@@ -99,13 +99,18 @@ def fetch_evrimagaci():
 
 
 def collect_all():
-    eksiseyler = fetch_eksiseyler()
+    try:
+        eksiseyler = fetch_eksiseyler()
+    except Exception:
+        eksiseyler = {"random": [], "new": [], "error": True}
+
     debe = fetch_debe()
     evrimagaci = fetch_evrimagaci()
 
     return {
         "eksiseyler_random": eksiseyler["random"],
         "eksiseyler_new": eksiseyler["new"],
+        "eksiseyler_error": eksiseyler.get("error", False),
         "debe": debe,
         "evrimagaci": evrimagaci,
     }

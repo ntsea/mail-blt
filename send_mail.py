@@ -120,8 +120,12 @@ def build_html(data, date_str):
 
     new_section = _build_new_section(data["eksiseyler_new"])
 
-    eksiseyler_random_rows = _render_eksiseyler_links(
-        data["eksiseyler_random"], color="inherit"
+    eksiseyler_random_rows = (
+        '<tr><td style="padding:12px 0;color:#aaaaaa;font-size:13px;">'
+        "⚠️ Ekşi Şeyler sitemap'e erişilemedi (Cloudflare engeli)."
+        "</td></tr>"
+        if data.get("eksiseyler_error")
+        else _render_eksiseyler_links(data["eksiseyler_random"], color="inherit")
     )
     debe_rows = _render_links(data["debe"], url_key="url")
     evrimagaci_rows = _render_links(data["evrimagaci"])
