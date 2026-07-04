@@ -1,14 +1,12 @@
 import json
-import os
 import random
 import xml.etree.ElementTree as ET
 
 import requests
 
-EKSISEYLER_SITEMAP = "https://eksiseyler.com/sitemap.xml"
+EKSISEYLER_LINKS_FILE = "eksiseyler_links.json"
 DEBE_RSS = "https://politepaul.com/fd/Ruvzo92PKseB.xml"
 EVRIMAGACI_RANDOM = "https://evrimagaci.org/rastgele"
-KNOWN_LINKS_FILE = "known_eksiseyler.json"
 EKSISEYLER_RANDOM_COUNT = 5
 EVRIMAGACI_RANDOM_COUNT = 5
 
@@ -21,41 +19,12 @@ HEADERS = {
 }
 
 
-def _load_known_links():
-    if not os.path.exists(KNOWN_LINKS_FILE):
-        return []
-    with open(KNOWN_LINKS_FILE, encoding="utf-8") as f:
-        return json.load(f)
-
-
-def _save_known_links(links):
-    with open(KNOWN_LINKS_FILE, "w", encoding="utf-8") as f:
-        json.dump(links, f, ensure_ascii=False, indent=2)
-
-
 def fetch_eksiseyler():
-    response = requests.get(EKSISEYLER_SITEMAP, headers=HEADERS, timeout=15)
-    response.raise_for_status()
+    with open(EKSISEYLER_LINKS_FILE, encoding="utf-8") as f:
+        all_links = json.load(f)
 
-    root = ET.fromstring(response.content)
-    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-
-    all_links = []
-    for url in root.findall("sm:url", ns):
-        loc = url.findtext("sm:loc", namespaces=ns)
-        lastmod = url.findtext("sm:lastmod", namespaces=ns)
-        if loc:
-            all_links.append({"url": loc.strip(), "lastmod": lastmod})
-
-    known = set(_load_known_links())
-    current_urls = {item["url"] for item in all_links}
-
-    new_links = [item for item in all_links if item["url"] not in known]
     random_links = random.sample(all_links, min(EKSISEYLER_RANDOM_COUNT, len(all_links)))
-
-    _save_known_links(sorted(current_urls))
-
-    return {"random": random_links, "new": new_links}
+    return {"random": random_links}
 
 
 def fetch_debe():
@@ -102,14 +71,13 @@ def collect_all():
     try:
         eksiseyler = fetch_eksiseyler()
     except Exception:
-        eksiseyler = {"random": [], "new": [], "error": True}
+        eksiseyler = {"random": [], "error": True}
 
     debe = fetch_debe()
     evrimagaci = fetch_evrimagaci()
 
     return {
         "eksiseyler_random": eksiseyler["random"],
-        "eksiseyler_new": eksiseyler["new"],
         "eksiseyler_error": eksiseyler.get("error", False),
         "debe": debe,
         "evrimagaci": evrimagaci,
