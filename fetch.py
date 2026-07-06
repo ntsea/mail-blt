@@ -73,8 +73,15 @@ def collect_all():
     except Exception:
         eksiseyler = {"random": [], "error": True}
 
-    debe = fetch_debe()
-    evrimagaci = fetch_evrimagaci()
+    try:
+        debe = fetch_debe()
+    except Exception:
+        debe = []
+
+    try:
+        evrimagaci = fetch_evrimagaci()
+    except Exception:
+        evrimagaci = []
 
     return {
         "eksiseyler_random": eksiseyler["random"],
