@@ -21,6 +21,74 @@
             </td>
           </tr>
 
+          <!-- SECTION: GÜNDEM -->
+          <tr>
+            <td style="padding:28px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #e63946;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Bundle.app</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">🗞️ Gündem</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for item in gundem %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <a href="{{ item.link }}" style="color:#e63946;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- DIVIDER -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
+            </td>
+          </tr>
+
+          <!-- SECTION: TEKNOLOJİ -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="border-left:3px solid #f4a261;padding-left:12px;">
+                    <p style="margin:0;font-size:11px;color:#888888;letter-spacing:1.5px;text-transform:uppercase;">Bundle.app</p>
+                    <h2 style="margin:4px 0 0 0;font-size:16px;color:#1a1a2e;">💻 Teknoloji</h2>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                {% for item in teknoloji %}
+                <tr>
+                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                    <a href="{{ item.link }}" style="color:#e76f51;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+          </tr>
+
+          <!-- DIVIDER -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;">
+              <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
+            </td>
+          </tr>
+
           <!-- SECTION: EVRİM AĞACI -->
           <tr>
             <td style="padding:28px 32px 0 32px;">

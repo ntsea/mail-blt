@@ -8,6 +8,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fetch import collect_all
+from news import get_news
 
 load_dotenv()
 
@@ -115,12 +116,42 @@ def _build_new_section(new_links):
     """
 
 
-def build_html(data, date_str):
+def _render_news_section(items: list[dict]) -> str:
+    """Haber listesini HTML satırlarına dönüştürür."""
+    rows = []
+    seen_titles = set()
+    for item in items:
+        title = item.get("title", "").strip()
+        link = item.get("link", "").strip()
+        channel = item.get("channel_name", "").strip()
+        if not title or not link or title in seen_titles:
+            continue
+        seen_titles.add(title)
+        channel_span = (
+            f'<span style="display:inline-block;margin-right:8px;font-size:10px;'
+            f'color:#888888;font-weight:700;text-transform:uppercase;">'
+            f'{channel}</span>'
+            if channel else ""
+        )
+        rows.append(
+            f'<tr><td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">'
+            f'{channel_span}'
+            f'<a href="{link}" style="color:inherit;text-decoration:none;font-size:14px;line-height:1.5;">'
+            f'{title}</a>'
+            f'</td></tr>'
+        )
+    return "\n".join(rows)
+
+
+def build_html(data, date_str, news: dict | None = None):
     template = Path("templates/mail.html").read_text(encoding="utf-8")
 
     eksiseyler_random_rows = _render_eksiseyler_links(data["eksiseyler_random"], color="inherit")
     debe_rows = _render_links(data["debe"], url_key="url")
     evrimagaci_rows = _render_links(data["evrimagaci"])
+
+    gundem_rows = _render_news_section((news or {}).get("Gündem", []))
+    teknoloji_rows = _render_news_section((news or {}).get("Teknoloji", []))
 
     html = template
     html = re.sub(
@@ -144,6 +175,18 @@ def build_html(data, date_str):
     html = re.sub(
         r"\{%\s*for url in evrimagaci\s*%\}.*?\{%\s*endfor\s*%\}",
         evrimagaci_rows,
+        html,
+        flags=re.DOTALL,
+    )
+    html = re.sub(
+        r"\{%\s*for item in gundem\s*%\}.*?\{%\s*endfor\s*%\}",
+        gundem_rows,
+        html,
+        flags=re.DOTALL,
+    )
+    html = re.sub(
+        r"\{%\s*for item in teknoloji\s*%\}.*?\{%\s*endfor\s*%\}",
+        teknoloji_rows,
         html,
         flags=re.DOTALL,
     )
@@ -180,7 +223,8 @@ def main():
     date_str = f"{now_tr.day} {TR_MONTHS[now_tr.month]} {now_tr.year}"
 
     data = collect_all()
-    html_body = build_html(data, date_str)
+    news = get_news()
+    html_body = build_html(data, date_str, news=news)
     send(html_body, date_str)
     print(f"Mail gönderildi: {date_str}")
 
