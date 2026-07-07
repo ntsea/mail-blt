@@ -8,8 +8,8 @@ import time
 
 import requests
 
-BUNDLE_APP_BANNER = "https://api.bundle.app/v3/get-banner"
-BUNDLE_APP_POPULAR = "https://api.bundle.app/v3/get-popular"
+BUNDLE_APP_BANNER = "https://www.bundle.app/api/main/get-banner"
+BUNDLE_APP_POPULAR = "https://www.bundle.app/api/main/get-popular"
 CACHE_FILE = "news_cache.json"
 CACHE_TTL = 1800  # 30 dakika
 
