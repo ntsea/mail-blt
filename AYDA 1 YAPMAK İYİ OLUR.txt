@@ -1,9 +1,0 @@
-Hepsi sırayla yapılacak. Terminale yazılacak satır satır. Aynı anda olmuyor.
-
-python dump_sitemap.py
-
-git add eksiseyler_links.json
-
-git commit -m "chore: eksiseyler linkleri guncelle"
-
-git push
