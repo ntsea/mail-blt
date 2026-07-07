@@ -36,15 +36,17 @@
           </tr>
           <tr>
             <td style="padding:12px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for item in gundem %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <a href="{{ item.link }}" style="color:#e63946;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for item in gundem %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <a href="{{ item.link }}" style="color:#e63946;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
 
@@ -70,15 +72,17 @@
           </tr>
           <tr>
             <td style="padding:12px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for item in teknoloji %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <a href="{{ item.link }}" style="color:#e76f51;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for item in teknoloji %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <a href="{{ item.link }}" style="color:#e76f51;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
 
@@ -104,15 +108,17 @@
           </tr>
           <tr>
             <td style="padding:12px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for url in evrimagaci %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <a href="{{ url }}" style="color:#2d6a4f;text-decoration:none;font-size:14px;line-height:1.5;">{{ url | urlname }}</a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for url in evrimagaci %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <a href="{{ url }}" style="color:#2d6a4f;text-decoration:none;font-size:14px;line-height:1.5;">{{ url | urlname }}</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
 
@@ -138,16 +144,18 @@
           </tr>
           <tr>
             <td style="padding:12px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for item in eksiseyler_random %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <a href="{{ item.url }}" style="color:#e94560;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
-                    <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for item in eksiseyler_random %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <a href="{{ item.url }}" style="color:#e94560;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
+                      <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
 
@@ -167,17 +175,19 @@
           </tr>
           <tr>
             <td style="padding:12px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for item in eksiseyler_new %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <span style="display:inline-block;background-color:#e8f4fd;color:#0f3460;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:8px;text-transform:uppercase;">Yeni</span>
-                    <a href="{{ item.url }}" style="color:#0f3460;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
-                    <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for item in eksiseyler_new %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <span style="display:inline-block;background-color:#e8f4fd;color:#0f3460;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;margin-right:8px;text-transform:uppercase;">Yeni</span>
+                      <a href="{{ item.url }}" style="color:#0f3460;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.url | urlname }}</a>
+                      <span style="display:inline-block;margin-left:8px;font-size:11px;color:#aaaaaa;">{{ item.lastmod }}</span>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
           {% endif %}
@@ -204,15 +214,17 @@
           </tr>
           <tr>
             <td style="padding:12px 32px 28px 32px;">
-              <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                {% for item in debe %}
-                <tr>
-                  <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
-                    <a href="{{ item.url }}" style="color:#533483;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </table>
+              <div style="max-height:185px;overflow-y:auto;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  {% for item in debe %}
+                  <tr>
+                    <td style="padding:8px 0;border-bottom:1px solid #f0f0f0;">
+                      <a href="{{ item.url }}" style="color:#533483;text-decoration:none;font-size:14px;line-height:1.5;">{{ item.title }}</a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </table>
+              </div>
             </td>
           </tr>
 
